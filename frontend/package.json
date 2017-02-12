@@ -1,0 +1,19 @@
+{
+  "name": "push-client",
+  "version": "1.0.0",
+  "description": "Cliente para notificaciones push",
+  "author": "dezkareid",
+  "license": "MIT",
+  "devDependencies": {
+    "browser-sync": "^2.18.7",
+    "dotenv": "^4.0.0",
+    "firebase": "^3.6.9",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-less": "^3.3.0",
+    "gulp-pug": "^3.2.0",
+    "gulp-template": "^4.0.0",
+    "gulp-uglify": "^2.0.1",
+    "materialize-css": "^0.98.0"
+  }
+}
