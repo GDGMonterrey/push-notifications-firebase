@@ -3,9 +3,7 @@ import * as admin from 'firebase-admin';
 export default class FirebaseService {
 	constructor() {
 		this.databaseURL = process.env.DATABASE_URL;
-		console.log(process.env.DATABASE_URL, process.env.FIREBASE_CREDENTIALS);
 		let serviceAccount = require(process.env.FIREBASE_CREDENTIALS);
-		console.log(serviceAccount);
 		let credentials ={
 			credential: admin.credential.cert(serviceAccount),
 			databaseURL: this.databaseURL
