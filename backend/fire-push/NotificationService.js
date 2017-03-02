@@ -5,18 +5,6 @@ export default class NotificationService {
 		this.API_KEY = process.env.API_KEY;
 	}
 
-	createCondition(topics){
-		let condition = "";
-		for(let topic of topics){
-			if (!condition) {
-				condition += `'/topics/${topic}' in topics `;
-			} else {
-				condition += `|| '/topics/${topic}' in topics `;
-			}
-		}	
-		return condition;
-	}
-
 	createNotification(title, text) {
 		let notification = {
 			title : title,
@@ -73,6 +61,7 @@ export default class NotificationService {
 		let topicRequest = {}
 		topicRequest.url = "https://iid.googleapis.com/iid/v1/" + token + "/rel/topics/" + topic;
 		topicRequest.method = 'POST';
+		topicRequest.timeout = 40000;
 		topicRequest.headers = {
 			'Content-Type' : 'application/json',
 			'Content-Length' : 0,

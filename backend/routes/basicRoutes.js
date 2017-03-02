@@ -53,19 +53,4 @@ basicRoutes.post('/topic-message', (req, res) => {
 	}
 });
 
-basicRoutes.post('/multi-message', function(req, res) {
-	if (req.body && req.body.topics && req.body.payload ){
-		let condition = firebaseService.createCondition(req.body.topics);
-		firebaseService.sendToCondition(condition, req.body.payload)
-			.then((response)=>{
-				res.json(response);
-			})
-			.catch((error)=>{
-				res.json(error);
-			});
-	} else {
-		res.sendStatus(500);
-	}
-});
-
 export default basicRoutes;
