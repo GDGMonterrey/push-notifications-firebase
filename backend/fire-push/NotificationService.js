@@ -1,4 +1,4 @@
-import request from 'request';
+import QueueService from './QueueService'
 
 export default class NotificationService {
 	constructor() {
@@ -46,15 +46,8 @@ export default class NotificationService {
 
 	sendNotification(message) {	
 		let pushRequest = this.notificationRequest(message);
-		return new Promise((resolve, reject)=>{
-			request(pushRequest,(error, response, body) => {
-				if (error){
-					reject(error);
-				} else {
-					resolve(body);
-				}
-			})
-		});
+		QueueService.sendMessage(pushRequest);
+		return true;
 	}
 
 	linkToTopicRequest(token, topic) {
@@ -67,15 +60,8 @@ export default class NotificationService {
 			'Content-Length' : 0,
 			'Authorization' : `key=${this.API_KEY}`
 		};
-
-		return new Promise((resolve, reject)=>{
-			request(topicRequest,(error, response, body) => {
-				if (error){
-					reject(error);
-				} else {
-					resolve(body);
-				}
-			})
-		});
+		QueueService.sendMessage(pushRequest);
+		return true;
+		
 	}
 }
