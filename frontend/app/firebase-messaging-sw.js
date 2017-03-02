@@ -9,10 +9,11 @@ const messaging = firebase.messaging();
 
 messaging.setBackgroundMessageHandler(function(payload) {
 	console.log('Llego una notificación push :3', payload);
-	var title = 'Hola';
+	var data = payload && payload.data || {};
+	var title = data.title || 'Hola';
 	var options = {
-		body: 'Soy una notificación y no te dejaré en visto :)',
-		icon: '/img/gdglogo.png'
+		body: data.body || 'Soy una notificación y no te dejaré en visto :)',
+		icon: data.icon || '/img/gdglogo.png'
 	};
 	self.registration.showNotification(title,options);
 });
