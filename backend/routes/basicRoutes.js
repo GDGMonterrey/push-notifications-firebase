@@ -13,13 +13,8 @@ basicRoutes.get('/', function(req, res) {
 
 basicRoutes.post('/register', (req, res) => {
 	if (req.body && req.body.token && req.body.topic ){
-		notificationService.linkToTopicRequest(req.body.token, req.body.topic)
-			.then((response)=>{
-				res.json(response);
-			})
-			.catch((error)=>{
-				res.json(error);
-			});
+		notificationService.linkToTopicRequest(req.body.token, req.body.topic);
+		res.sendStatus(200);
 	} else {
 		res.sendStatus(500);
 	}
@@ -48,6 +43,19 @@ basicRoutes.post('/topic-message', (req, res) => {
 			.catch((error)=>{
 				res.json(error);
 			});
+	} else {
+		res.sendStatus(500);
+	}
+});
+
+basicRoutes.post('/topic-message-queue', (req, res) => {
+	if (req.body && req.body.topic && req.body.payload ){
+		let message = {
+			to : "/topics/"+req.body.topic,
+			data : req.body.payload.data || req.body.payload
+		}
+		notificationService.sendNotification(message);
+		res.sendStatus(200);
 	} else {
 		res.sendStatus(500);
 	}
