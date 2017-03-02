@@ -3,7 +3,7 @@ const request = require('request');
 
 const createConsumer = function (channel) {
 	return function (message) {
-		var content = message.content.toString('utf-8');
+		let content = message.content.toString('utf-8');
 		console.log(" Message in queue %s", content);
 		let requestOptions = null;
 		requestOptions = JSON.parse(content);
