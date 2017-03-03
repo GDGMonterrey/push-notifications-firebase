@@ -1,0 +1,15 @@
+{
+  "name": "queue_kue",
+  "version": "1.0.0",
+  "description": "Queue using KUE for notifications",
+  "main": "receiver.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "@dezkareid",
+  "license": "MIT",
+  "dependencies": {
+    "kue": "^0.11.5",
+    "request": "^2.79.0"
+  }
+}
